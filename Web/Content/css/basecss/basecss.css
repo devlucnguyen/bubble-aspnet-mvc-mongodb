@@ -1,0 +1,9 @@
+﻿.hide {
+    display: none !important;
+}
+.disable-input{
+    cursor: not-allowed;
+}
+select{
+    cursor: pointer;
+}

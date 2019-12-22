@@ -1,0 +1,21 @@
+﻿.form-content select {
+    border: 1px solid rgba(0, 149, 255, 0);
+    background-color: #F7F7F7;
+    border: 0px !important;
+    margin-bottom: 14px;
+}
+.msg-error{
+    color: red !important;
+    font-size: 15px !important;
+}
+.invalid, select.invalid {
+    border: 1px red solid !important;
+}
+.span-invalid {
+    color: red;
+    font-size: 14px;
+    margin-left: 5px;
+}
+.span-valid{
+    display: none;
+}

@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+    var msg = (string)ViewData["msg"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble - Login</title>
+    @Styles.Render("~/Content/basecss")
+    @Styles.Render("~/Content/login")
+    @Scripts.Render("~/bundles/basejs")
+    @Scripts.Render("~/bundles/login")
+</head>
+<body>
+    <div class="form-body without-side">
+        <div class="website-logo">
+            <a href="#">
+                <div class="logo">
+                    <img class="logo-size" src="~/Content/images/logo-light.svg" alt="">
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+                    <img src="~/Content/images/graphic3.svg" alt="">
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3 class="login-title">Login to account</h3>
+                        <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                        <p class="msg-error">@msg</p>
+                        <form method="post" action="@Url.Action("Login","Account")" id="loginForm">
+                            <div class="row register hide">
+                                <div class="col-md-12">
+                                    <span class="span-valid span-fullname">First Name and Last Name is required</span>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" name="firstname" placeholder="First Name" required="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" name="lastname" placeholder="Last Name" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="span-valid span-email">Email is required</span>
+                                    <input class="form-control" type="text" name="email" placeholder="E-mail Address" required="">
+                                </div>
+                            </div>
+                            <div class="row register hide">
+                                <div class="col-md-12">
+                                    <span class="span-valid span-dob">Day of birth is required</span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="day-select form-control"></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="month-select form-control" onchange="setDaySelect()"></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="year-select form-control" onchange="setDaySelect()"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="dob" />
+                            </div>
+                            <div class="row register hide">
+                                <div class="col-md-12">
+                                    <span class="span-valid span-gender">Gender is required</span>
+                                    <select class="form-control gender-select" name="gender">
+                                        <option value="0">Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="span-valid span-password">Password is required</span>
+                                    <input class="form-control" type="password" name="password" placeholder="Password" required="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="span-valid span-repassword">Confirm password is required</span>
+                                    <input class="form-control register hide" type="password" name="repassword" placeholder="Confirm Password" required="">
+                                </div>
+                            </div>
+                            <div class="form-button">
+                                <button type="button" class="ibtn submitbtn" onclick="formsubmit()">Login</button>
+                                <a href="javascript:void(0);" onclick="forgetPassword()" class="login">Forget password?</a>
+                            </div>
+                        </form>
+                        <div class="other-links"></div>
+                        <div class="page-links">
+                            <a href="javascript:void(0);" onclick="register()" class="login">Register new account</a>
+                            <a href="javascript:void(0);" onclick="login()" class="register hide">Login to account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
