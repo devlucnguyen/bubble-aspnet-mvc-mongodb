@@ -9,7 +9,7 @@
     font-size: 15px !important;
 }
 .invalid, select.invalid {
-    border: 1px red solid !important;
+    border: 1px #ff000059 solid !important;
 }
 .span-invalid {
     color: red;

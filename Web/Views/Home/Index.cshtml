@@ -1,3 +1,7 @@
-﻿@{
+﻿@using Web.WebUtilities;
+@{
     ViewBag.Title = "Home Page";
+    var loggedUser = SessionUtility.GetLoggedUser();
 }
+
+<p>@loggedUser.DOB.ToString("dd/MM/yyyy")</p>

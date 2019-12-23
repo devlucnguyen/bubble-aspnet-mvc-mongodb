@@ -8,7 +8,7 @@
 
         #region Session keys
         public static string CONST_SESSION_KEY_LOGGED_USER = "BubbleLoggedUser";
-        public static int CONST_SESSION_TIMEOUT = 60;
+        public static int CONST_SESSION_TIMEOUT = 2;
         #endregion
 
         #region Messages

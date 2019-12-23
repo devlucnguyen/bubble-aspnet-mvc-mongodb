@@ -67,7 +67,7 @@ namespace MongoDB.Collections
         #region Private Functions
         private Account CreateModel(Account account, bool viewModel)
         {
-            if(viewModel == true && account != null)
+            if(viewModel == true && account != null && string.IsNullOrEmpty(account.Avatar) == false)
             {
                 account.Avatar = this.GridFsCollection.DownloadImageURL(account.Avatar);
             }

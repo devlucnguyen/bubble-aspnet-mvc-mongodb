@@ -31,7 +31,7 @@ namespace Web.App_Start
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
             string actionName = filterContext.ActionDescriptor.ActionName;
 
-            if (controllerName.Equals("Account") && actionName.Equals("Login"))
+            if ((controllerName.Equals("Account") && actionName.Equals("Login")) || (controllerName.Equals("Account") && actionName.Equals("Register")))
                 return false;
 
             return true;

@@ -1,5 +1,6 @@
 ﻿using Common.Constants;
 using Common.Utilities;
+using MongoDB.Entities;
 using MongoDB.Interfaces;
 using System;
 using System.Web.Mvc;
@@ -24,20 +25,17 @@ namespace Web.Controllers
 
         #region Actions
         [HttpGet]
-        public ActionResult Login(string msg)
+        public ActionResult Login()
         {
-            ViewData["msg"] = msg;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(FormCollection collection)
+        public ActionResult Login(Account model)
         {
-            var email = collection.Get("email");
-            var password = collection.Get("password");
-            var currentAccount = this.AccountCollection.FindByEmail(email);
+            var currentAccount = this.AccountCollection.FindByEmail(model.Email);
 
-            if(currentAccount != null && EncryptionUtility.BcryptCheckPassword(password, currentAccount.Password))
+            if(currentAccount != null && EncryptionUtility.BcryptCheckPassword(model.Password, currentAccount.Password))
             {
                 if (currentAccount.Status)
                 {
@@ -51,10 +49,39 @@ namespace Web.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                else return RedirectToAction("Login", new { msg = Constant.CONST_MESSAGE_LOGIN_DISABLE });
+                else
+                {
+                    model.FirstName = Constant.CONST_MESSAGE_LOGIN_DISABLE;
+                    return View(model);
+                }
             }
 
-            return RedirectToAction("Login", new { msg = Constant.CONST_MESSAGE_LOGIN_INVALID });
+            model.FirstName = Constant.CONST_MESSAGE_LOGIN_INVALID;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Register(Account model)
+        {
+            if(string.IsNullOrEmpty(model.Password) == false)
+                model.Password = EncryptionUtility.BcryptHashPassword(model.Password);
+
+            model.ConfirmEmail = false;
+            model.CreateDate = DateTime.Now;
+            model.Status = true;
+
+            this.AccountCollection.Insert(model);
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            SessionUtility.Logout();
+
+            return RedirectToAction("Login");
         }
         #endregion
     }

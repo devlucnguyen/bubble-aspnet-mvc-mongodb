@@ -1,4 +1,5 @@
 ﻿using Autofac.Integration.Mvc;
+using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -16,6 +17,11 @@ namespace Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             var container = ContainerConfig.RegisterComponent();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        }
+
+        void Session_End(object sender, EventArgs e)
+        {
+            
         }
     }
 }

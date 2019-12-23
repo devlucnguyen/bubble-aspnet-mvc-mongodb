@@ -15,8 +15,8 @@ $(window).on("load", function () {
         $('.nav-tabs .nav-item > .active').parent().next('li').find('a').trigger('click');
     });
 });
-$(window).ready(function () {
-    $('input[name="email"]').focus();
+$(document).ready(function () {
+    $('input[name="Email"]').focus();
 });
 
 function register() {
@@ -29,7 +29,7 @@ function register() {
     $('#loginForm').trigger('reset');
     $('#loginForm span').removeClass('span-invalid').addClass('span-valid');
     $('#loginForm input').removeClass('invalid');
-    $('input[name="firstname"]').focus();
+    $('input[name="FirstName"]').focus();
 
     setMonthSelect();
     setYearSelect();
@@ -46,12 +46,12 @@ function login() {
     $('#loginForm').trigger('reset');
     $('#loginForm span').removeClass('span-invalid').addClass('span-valid');
     $('#loginForm input').removeClass('invalid');
-    $('input[name="email"]').focus();
+    $('input[name="Email"]').focus();
 }
 
 function setMonthSelect() {
     $('.month-select').empty();
-    $('.month-select').append('<option value="0">Month</option>')
+    $('.month-select').append('<option value="-1">Month</option>')
 
     for (var i = 0; i < monthNames.length; ++i) {
         var value = String(i + 1).padStart(2, '0');
@@ -61,7 +61,7 @@ function setMonthSelect() {
 
 function setYearSelect() {
     $('.year-select').empty();
-    $('.year-select').append('<option value="0">Year</option>');
+    $('.year-select').append('<option value="-1">Year</option>');
 
     //Age range: 10 -> 100
     var currentYear = new Date().getFullYear();
@@ -78,12 +78,12 @@ function setDaySelect() {
     var maxDay = daysInMonth(month, year);
 
     $('.day-select').empty();
-    $('.day-select').append('<option value="0">Day</option>');
+    $('.day-select').append('<option value="-1">Day</option>');
 
     if (month == 0) ++month;
     if (year == 0) year = currentYear - 10;
-    if (currentDay == null) currentDay = 0;
-    if (currentDay > maxDay) currentDay = 0;
+    if (currentDay == null) currentDay = -1;
+    if (currentDay > maxDay) currentDay = -1;
 
     for (var day = 1; day <= maxDay; ++day) {
         var value = String(day).padStart(2, '0');
@@ -100,6 +100,14 @@ function daysInMonth(month, year) {
 function formsubmit() {
     if (validate() == false) return;
 
+    var isLogin = $('#loginForm').attr('action') == '/Account/Login';
+
+    if (isLogin == false) { //Register
+        //Set DOB
+        var dob = $('.month-select').val() + '/' + $('.day-select').val() + '/' + $('.year-select').val();
+        $('input[name="DOB"]').val(dob);
+    }
+
     $('#loginForm').submit();
 }
 
@@ -111,20 +119,20 @@ function validate() {
 
     if (isLogin) { //Validate Login
         //Email
-        validateEmpty("email");
+        validateEmpty("Email");
 
         //Password
-        validateEmpty("password");
+        validateEmpty("Password");
     }
     else { //Validate Register
         //First Name
-        validateEmpty("firstname", "fullname");
+        validateEmpty("FirstName", "fullname");
 
         //Last Name
-        validateEmpty("lastname", "fullname");
+        validateEmpty("LastName", "fullname");
 
         //Email
-        validateEmpty("email");
+        validateEmpty("Email");
 
         //Day
         validateEmpty("day-select", "dob", true);
@@ -136,18 +144,18 @@ function validate() {
         validateEmpty("year-select", "dob", true);
 
         //Gender
-        validateEmpty("gender-select", "gender", true);
+        validateEmpty("Gender", "gender", true);
 
         //Password
-        validateEmpty("password");
+        validateEmpty("Password");
 
         //Confirm Password
         validateEmpty("repassword");
     }
 
-    if (checked) {
+    if (checked && isLogin == false) {
         //Match confirm password
-        if ($('input[name="password"]').val().trim() != $('input[name="repassword"]').val().trim()) {
+        if ($('input[name="Password"]').val().trim() != $('input[name="repassword"]').val().trim()) {
             $('input[name="repassword"]').addClass('invalid');
             $('.span-repassword').removeClass('span-valid').addClass('span-invalid');
             $('.span-repassword').text('Confirm password not match');
@@ -162,15 +170,15 @@ function validate() {
 }
 
 function validateEmpty(inputName, spanName, isSelect = false) {
-    spanName = spanName ? spanName : inputName;
+    spanName = spanName ? spanName : inputName.toLowerCase();
 
     var input = 'input[name="' + inputName + '"]';
     var span = '.span-' + spanName;
     var condition = true;
 
     if (isSelect) { // select tag
-        input = 'select.' + inputName;
-        condition = $(input).val() == '0';
+        input = 'select.' + inputName.toLowerCase();
+        condition = $(input).val() == '-1';
     } else condition = $(input).val().trim() == '';
         
     if (condition) {
