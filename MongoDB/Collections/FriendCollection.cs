@@ -28,8 +28,9 @@ namespace MongoDB.Collections
         {
             var friendListA = Collection.Find(friend => friend.AccountA_id.Equals(accountId)).ToList();
             var friendListB = Collection.Find(friend => friend.AccountB_id.Equals(accountId)).ToList();
-            var friendList = friendListA.Union(friendListB);
-            var result = friendList.Select(friend => AccountCollection.Find(friend.AccountB_id));
+            var resultA = friendListA.Select(friend => AccountCollection.Find(friend.AccountB_id));
+            var resultB = friendListB.Select(friend => AccountCollection.Find(friend.AccountA_id));
+            var result = resultA.Union(resultB);
 
             return result;
         }

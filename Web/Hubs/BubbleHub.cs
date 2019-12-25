@@ -31,7 +31,7 @@ namespace Web.Hubs
                 Clients.Caller.onConnected(id, accountId);
 
                 // send to all except caller client
-                Clients.AllExcept(id).onNewUserConnected(id, accountId, logintime);
+                Clients.AllExcept(id).onNewUserConnected();
             }
         }
 
@@ -41,10 +41,8 @@ namespace Web.Hubs
 
             if (connectedUser != null)
             {
-                var id = Context.ConnectionId;
-
                 ConnectedUsers.Remove(connectedUser);
-                Clients.All.onUserDisconnected(id, connectedUser.AccountId);
+                Clients.All.onUserDisconnected(connectedUser.AccountId);
             }
 
             return base.OnDisconnected(stopCalled);

@@ -18,8 +18,13 @@ function registerClientMethods(bubbleHub) {
     }
 
     // On New User Connected
-    bubbleHub.client.onNewUserConnected = function (id, name, loginDate) {
-        AddUser(bubbleHub, id, name, loginDate);
+    bubbleHub.client.onNewUserConnected = function () {
+        getFriendOnline();
+    }
+
+    // On User Disconnected
+    bubbleHub.client.onUserDisconnected = function (userid) {
+        setFriendOffline(userid);
     }
 }
 
@@ -28,19 +33,26 @@ function registerEvents(bubbleHub) {
         bubbleHub.server.connect(userId);
 }
 
-function AddUser(id, name, date) {
-    var code = "";
-
-    code = $('<br/><span class="username">' + id + '  ' + '<a id="' + id + '" class="user" >' + name + '<a>' + '<span class="text-muted pull-right">' + date + '</span>  </span></div></div>');
-    $("#divusers").append(code);
-}
-
 function getFriendOnline() {
     $.ajax({
         url: 'Account/GetFriendOnline',
         type: 'post',
         success: function (response) {
             var friends = JSON.parse(response).user;
+
+            for (var i = 0; i < friends.length; ++i) {
+                var status = $('.friend-list li[data-userid="' + friends[i] + '"]').find('.avatar');
+
+                if (status)
+                    $(status).removeClass('avatar-state-secondary').addClass('avatar-state-success');
+            }
         }
     });
+}
+
+function setFriendOffline(userid) {
+    var status = $('.friend-list li[data-userid="' + userid + '"]').find('.avatar');
+
+    if (status)
+        $(status).removeClass('avatar-state-success').addClass('avatar-state-secondary');
 }

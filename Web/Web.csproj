@@ -236,6 +236,9 @@
     <Content Include="Content\css\icons\themify\fonts\themify.woff" />
     <None Include="packages.config" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\_FriendPartial.cshtml" />
+    <Content Include="Views\Home\_ConversationPartial.cshtml" />
+    <Content Include="Views\Home\_ChatPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

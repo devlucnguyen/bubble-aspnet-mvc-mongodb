@@ -32,6 +32,9 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (SessionUtility.IsSessionAlive())
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
 
@@ -98,7 +101,7 @@ namespace Web.Controllers
             var friendList = FriendCollection.FindByAccount(loggedUser._id.ToString());
             var onlineUser = from friend in friendList
                              join user in connectedUsers on friend._id.ToString() equals user.AccountId
-                             select friend;
+                             select friend._id.ToString();
 
             return new JsonResult { ContentType = "text", Data = new { user = onlineUser } };
         }
