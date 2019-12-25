@@ -6,9 +6,14 @@
         public static string CONST_DB_COLUMN_ID = "_id";
         #endregion
 
+        #region Collection Name
+        public static string CONST_ACCOUNT_COLLECTION = "Account";
+        public static string CONST_FRIEND_COLLECTION = "Friend";
+        #endregion
+
         #region Session keys
         public static string CONST_SESSION_KEY_LOGGED_USER = "BubbleLoggedUser";
-        public static int CONST_SESSION_TIMEOUT = 2;
+        public static int CONST_SESSION_TIMEOUT = 20;
         #endregion
 
         #region Messages

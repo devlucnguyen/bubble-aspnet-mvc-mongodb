@@ -14,10 +14,18 @@ namespace Web
 
             bundles.Add(new ScriptBundle("~/bundles/bubblejs").Include(
                         "~/Scripts/basejs/select2.min.js",
+                        "~/Scripts/basejs/jquery.nicescroll.min.js",
+                        "~/Scripts/basejs/bubble.min.js",
                         "~/Scripts/basejs/main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
                         "~/Scripts/pages/login.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bubblehub").Include(
+                        "~/Scripts/pages/bubblehub.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
+                        "~/Scripts/basejs/jquery.signalR-2.4.1.min.js"));
             #endregion
 
             #region Styles
@@ -36,6 +44,7 @@ namespace Web
                         "~/Content/css/basecss/select2.min.css",
                         "~/Content/css/basecss/perfect-scrollbar.css",
                         "~/Content/css/basecss/util.css",
+                        "~/Content/css/basecss/bubble.min.css",
                         "~/Content/css/basecss/main.css"));
             #endregion
         }

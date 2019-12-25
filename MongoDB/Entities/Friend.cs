@@ -12,6 +12,7 @@ namespace MongoDB.Entities
         public string AccountA_id { get; set; }
         public string AccountB_id { get; set; }
         public DateTime RelationshipDate { get; set; }
+        public string Request { get; set; } //Store accountId request, null is friend
         #endregion
     }
 }

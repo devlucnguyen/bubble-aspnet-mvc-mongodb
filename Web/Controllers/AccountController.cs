@@ -3,7 +3,9 @@ using Common.Utilities;
 using MongoDB.Entities;
 using MongoDB.Interfaces;
 using System;
+using System.Linq;
 using System.Web.Mvc;
+using Web.Hubs;
 using Web.WebUtilities;
 
 namespace Web.Controllers
@@ -13,13 +15,16 @@ namespace Web.Controllers
         #region Properties
         private IAccountCollection AccountCollection { get; set; }
         private IGridFsCollection GridFsCollection { get; set; }
+        private IFriendCollection FriendCollection { get; set; }
         #endregion
 
         #region Contructor
-        public AccountController(IAccountCollection accountCollection, IGridFsCollection gridFsCollection)
+        public AccountController(IAccountCollection accountCollection, IGridFsCollection gridFsCollection,
+            IFriendCollection friendCollection)
         {
             this.AccountCollection = accountCollection;
             this.GridFsCollection = gridFsCollection;
+            this.FriendCollection = friendCollection;
         }
         #endregion
 
@@ -82,6 +87,20 @@ namespace Web.Controllers
             SessionUtility.Logout();
 
             return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public JsonResult GetFriendOnline()
+        {
+            var result = new JsonResult { ContentType = "text" };
+            var connectedUsers = BubbleHub.GetAllConnectedUser();
+            var loggedUser = SessionUtility.GetLoggedUser();
+            var friendList = FriendCollection.FindByAccount(loggedUser._id.ToString());
+            var onlineUser = from friend in friendList
+                             join user in connectedUsers on friend._id.ToString() equals user.AccountId
+                             select friend;
+
+            return new JsonResult { ContentType = "text", Data = new { user = onlineUser } };
         }
         #endregion
     }

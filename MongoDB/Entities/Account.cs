@@ -22,12 +22,5 @@ namespace MongoDB.Entities
         public DateTime LastLogout { get; set; }
         public bool Status { get; set; }
         #endregion
-
-        #region Functions
-        public bool IsOnline()
-        {
-            return this.LastLogin > this.LastLogout;
-        }
-        #endregion
     }
 }

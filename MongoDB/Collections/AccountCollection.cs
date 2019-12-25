@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Common.Constants;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Entities;
 using MongoDB.Interfaces;
@@ -18,7 +19,7 @@ namespace MongoDB.Collections
         #region Constructors
         public AccountCollection(IUnitOfWork unitOfWork, IGridFsCollection gridFsCollection) : base(unitOfWork)
         {
-            this.Collection = unitOfWork.DBContext.GetCollection<Account>("Account");
+            this.Collection = unitOfWork.DBContext.GetCollection<Account>(Constant.CONST_ACCOUNT_COLLECTION);
             this.GridFsCollection = gridFsCollection;
         }
         #endregion
@@ -33,7 +34,7 @@ namespace MongoDB.Collections
 
         public Account Find(string id, bool viewModel = true)
         {
-            var filter = Builders<Account>.Filter.Eq("_id", ObjectId.Parse(id));
+            var filter = Builders<Account>.Filter.Eq(Constant.CONST_DB_COLUMN_ID, ObjectId.Parse(id));
             var model = Collection.Find(filter).FirstOrDefault();
             var result = this.CreateModel(model, viewModel);
 
@@ -58,7 +59,7 @@ namespace MongoDB.Collections
 
         public void Update(Account account)
         {
-            var filter = Builders<Account>.Filter.Eq("_id", account._id);
+            var filter = Builders<Account>.Filter.Eq(Constant.CONST_DB_COLUMN_ID, account._id);
 
             Collection.ReplaceOne(filter, account);
         }

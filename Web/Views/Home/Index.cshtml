@@ -4,4 +4,855 @@
     var loggedUser = SessionUtility.GetLoggedUser();
 }
 
-<p>@loggedUser.DOB.ToString("dd/MM/yyyy")</p>
+@if(loggedUser != null)
+{
+    <script>
+        var userId = '@loggedUser._id';
+    </script>
+}
+
+<div class="content">
+    <!-- sidebar group -->
+    <div class="sidebar-group">
+        <!-- Chats sidebar -->
+        <div id="chats" class="sidebar active">
+            <header>
+                <span>Chats</span>
+                <ul class="list-inline">
+                    <li class="list-inline-item" data-toggle="tooltip" title="" data-original-title="New Group">
+                        <a class="btn btn-light" href="#" data-toggle="modal" data-target="#newGroup">
+                            <i class="fa fa-users"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-light" data-toggle="tooltip" title="" href="#" data-navigation-target="friends" data-original-title="New Chat">
+                            <i class="ti-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item d-lg-none d-sm-block">
+                        <a href="#" class="btn btn-light sidebar-close">
+                            <i class="ti-close"></i>
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <form action="">
+                <input type="text" class="form-control" placeholder="Search chat">
+            </form>
+            <div class="sidebar-body" tabindex="3" style="overflow: hidden; outline: none;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <figure class="avatar avatar-state-success">
+                            <img src="~/Content/images/man_avatar1.jpg" class="rounded-circle">
+                        </figure>
+                        <div class="users-list-body">
+                            <h5>Patsy Paulton</h5>
+                            <p>Traditional heading elscas sdscsd sdcsdsc</p>
+                            <div class="users-list-action">
+                                <div class="new-message-count">2</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item open-chat">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/man_avatar3.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Karl Hubane</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="avatar-group">
+                            <figure class="avatar">
+                                <span class="avatar-title bg-warning bg-success rounded-circle">
+                                    <i class="fa fa-users"></i>
+                                </span>
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Entertainment Group</h5>
+                            <p><strong>Maher Ruslandi: </strong>Hello!!!</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar avatar-state-warning">
+                                <img src="~/Content/images/women_avatar1.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Jennica Kindred</h5>
+                            <p>I know how important this file is to you. You can trust me ;)</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <span class="avatar-title bg-info rounded-circle">M</span>
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Marvin Rohan</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/man_avatar2.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Frans Hanscombe</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ./ Chats sidebar -->
+        <!-- Friends sidebar -->
+        <div id="friends" class="sidebar">
+            <header>
+                <span>Friends</span>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="btn btn-light" href="#" data-toggle="modal" data-target="#addFriends">
+                            <i class="ti-plus btn-icon"></i> Add Friends
+                        </a>
+                    </li>
+                    <li class="list-inline-item d-lg-none d-sm-block">
+                        <a href="#" class="btn btn-light sidebar-close">
+                            <i class="ti-close"></i>
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <form action="">
+                <input type="text" class="form-control" placeholder="Search chat">
+            </form>
+            <div class="sidebar-body" style="overflow: hidden; outline: none;" tabindex="4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/women_avatar5.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Harrietta Souten</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <span class="avatar-title bg-success rounded-circle">A</span>
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Aline McShee</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/women_avatar1.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Brietta Blogg</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/man_avatar3.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Karl Hubane</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/man_avatar2.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Jillana Tows</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <span class="avatar-title bg-info rounded-circle">AD</span>
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Alina Derington</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <span class="avatar-title bg-warning rounded-circle">S</span>
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Stevy Kermeen</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/man_avatar1.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Stevy Kermeen</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <img src="~/Content/images/man_avatar5.jpg" class="rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Gloriane Shimmans</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <figure class="avatar">
+                                <span class="avatar-title bg-secondary rounded-circle">B</span>
+                            </figure>
+                        </div>
+                        <div class="users-list-body">
+                            <h5>Bernhard Perrett</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ./ Friends sidebar -->
+        <!-- Favorites sidebar -->
+        <div id="favorites" class="sidebar">
+            <header>
+                <span>Favorites</span>
+                <ul class="list-inline">
+                    <li class="list-inline-item d-lg-none d-sm-block">
+                        <a href="#" class="btn btn-light sidebar-close">
+                            <i class="ti-close"></i>
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <form action="">
+                <input type="text" class="form-control" placeholder="Search favorites">
+            </form>
+            <div class="sidebar-body" style="overflow: hidden; outline: none;" tabindex="5">
+                <ul class="list-group list-group-flush users-list">
+                    <li class="list-group-item">
+                        <div class="users-list-body">
+                            <h5>Jennica Kindred</h5>
+                            <p>I know how important this file is to you. You can trust me ;)</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">View Chat</a>
+                                        <a href="#" class="dropdown-item">Forward</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="users-list-body">
+                            <h5>Marvin Rohan</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">View Chat</a>
+                                        <a href="#" class="dropdown-item">Forward</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="users-list-body">
+                            <h5>Frans Hanscombe</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">View Chat</a>
+                                        <a href="#" class="dropdown-item">Forward</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="users-list-body">
+                            <h5>Karl Hubane</h5>
+                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                            <div class="users-list-action action-toggle">
+                                <div class="dropdown">
+                                    <a data-toggle="dropdown" href="#">
+                                        <i class="ti-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item">View Chat</a>
+                                        <a href="#" class="dropdown-item">Forward</a>
+                                        <a href="#" class="dropdown-item">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ./ Stars sidebar -->
+    </div>
+    <!-- ./ sidebar group -->
+    <!-- chat -->
+    <div class="chat">
+        <div class="chat-header">
+            <div class="chat-header-user">
+                <figure class="avatar avatar-lg">
+                    <img src="~/Content/images/man_avatar3.jpg" class="rounded-circle">
+                </figure>
+                <div>
+                    <h5>Karl Hubane</h5>
+                    <small class="text-muted">
+                        <i>Online</i>
+                    </small>
+                </div>
+            </div>
+            <div class="chat-header-action">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-success">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fa fa-video-camera" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-secondary" data-toggle="dropdown">
+                            <i class="ti-more"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Add to archive</a>
+                            <a href="#" class="dropdown-item">Delete</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Block</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="chat-body" tabindex="2" style="overflow: hidden; outline: none;">
+            <!-- .no-message -->
+            <!--
+        <div class="no-message-container">
+            <i class="fa fa-comments-o"></i>
+            <p>Select a chat to read messages</p>
+        </div>
+        -->
+            <div class="messages">
+                <div class="message-item outgoing-message">
+                    <div class="message-content">
+                        Hey, Maher! I'm waiting for you to send me the files.
+                    </div>
+                    <div class="message-action">
+                        Am 09:34 <i class="ti-double-check"></i>
+                    </div>
+                </div>
+                <div class="message-item">
+                    <div class="message-content">
+                        I'm sorry :( I'll send you as soon as possible.
+                    </div>
+                    <div class="message-action">
+                        Pm 14:20
+                    </div>
+                </div>
+                <div class="message-item outgoing-message">
+                    <div class="message-content">
+                        I'm waiting. Thank you :)
+                    </div>
+                    <div class="message-action">
+                        Pm 14:25 <i class="ti-double-check"></i>
+                    </div>
+                </div>
+                <div class="message-item">
+                    <div class="message-content">
+                        I'm sending files now.
+                    </div>
+                    <div class="message-action">
+                        Pm 14:20
+                    </div>
+                </div>
+                <div class="message-item">
+                    <div class="message-content message-file">
+                        <div class="file-icon">
+                            <i class="ti-file"></i>
+                        </div>
+                        <div>
+                            <div>important_documents.pdf <i class="text-muted small">(50KB)</i></div>
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="#">Download</a></li>
+                                <li class="list-inline-item"><a href="#">View</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="message-action">
+                        Pm 14:25
+                    </div>
+                </div>
+                <div class="message-item outgoing-message">
+                    <div class="message-content">
+                        Thank you so much. After I review these files, I will give you my opinion. If there's a problem, you can send it back. Good luck with!
+                    </div>
+                    <div class="message-action">
+                        Pm 14:50 <i title="Message could not be sent" class="ti-info-alt text-danger"></i>
+                    </div>
+                </div>
+                <div class="message-item">
+                    <div class="message-content">
+                        I can't wait
+                    </div>
+                    <div class="message-action">
+                        Pm 15:00
+                    </div>
+                </div>
+                <div class="message-item outgoing-message">
+                    <div class="message-content">
+                        I know how important this file is to you. You can trust me ;)
+                    </div>
+                    <div class="message-action">
+                        Pm 14:50 <i class="ti-double-check"></i>
+                    </div>
+                </div>
+                <div class="message-item ">
+                    <div class="message-content">Lorem ipsum dolor sit amet.</div>
+                    <div class="message-action">PM 14:25 </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <form action="">
+                <input type="text" class="form-control" placeholder="Recipient&#39;s username" aria-label="Recipient&#39;s username" aria-describedby="button-addon2">
+                <div class="form-buttons">
+                    <button class="btn btn-light btn-floating" type="button">
+                        <i class="fa fa-paperclip"></i>
+                    </button>
+                    <button class="btn btn-light btn-floating" type="button">
+                        <i class="fa fa-microphone"></i>
+                    </button>
+                    <button class="btn btn-primary btn-floating" type="submit">
+                        <i class="fa fa-send"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- ./ chat -->
+    <div class="sidebar-group">
+        <div id="contact-information" class="sidebar">
+            <header>
+                <span>About</span>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-light sidebar-close">
+                            <i class="ti-close"></i>
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <div class="sidebar-body" style="overflow: hidden; outline: none;" tabindex="6">
+                <div class="pl-4 pr-4 text-center">
+                    <figure class="avatar avatar-state-danger avatar-xl mb-4">
+                        <img src="~/Content/images/women_avatar5.jpg" class="rounded-circle">
+                    </figure>
+                    <h5 class="text-primary">Frans Hanscombe</h5>
+                    <p class="text-muted">Last seen: Today</p>
+                </div>
+                <hr>
+                <div class="pl-4 pr-4">
+                    <h6>About</h6>
+                    <p class="text-muted">I love reading, traveling and discovering new things. You need to be happy in life.</p>
+                </div>
+                <hr>
+                <div class="pl-4 pr-4">
+                    <h6>Phone</h6>
+                    <p class="text-muted">(555) 555 55 55</p>
+                </div>
+                <hr>
+                <div class="pl-4 pr-4">
+                    <h6>Media</h6>
+                    <div class="files">
+                        <ul class="list-inline" style="overflow: hidden; outline: none;" tabindex="1">
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <figure class="avatar avatar-lg">
+                                        <span class="avatar-title bg-warning">
+                                            <i class="fa fa-file-pdf-o"></i>
+                                        </span>
+                                    </figure>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <figure class="avatar avatar-lg">
+                                        <img src="~/Content/images/women_avatar1.jpg">
+                                    </figure>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <figure class="avatar avatar-lg">
+                                        <img src="~/Content/images/women_avatar3.jpg">
+                                    </figure>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <figure class="avatar avatar-lg">
+                                        <img src="~/Content/images/women_avatar4.jpg">
+                                    </figure>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <figure class="avatar avatar-lg">
+                                        <span class="avatar-title bg-success">
+                                            <i class="fa fa-file-excel-o"></i>
+                                        </span>
+                                    </figure>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <figure class="avatar avatar-lg">
+                                        <span class="avatar-title bg-info">
+                                            <i class="fa fa-file-text-o"></i>
+                                        </span>
+                                    </figure>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="pl-4 pr-4">
+                    <h6>City</h6>
+                    <p class="text-muted">Germany / Berlin</p>
+                </div>
+                <hr>
+                <div class="pl-4 pr-4">
+                    <h6>Website</h6>
+                    <p>
+                        <a href="#">www.franshanscombe.com</a>
+                    </p>
+                </div>
+                <hr>
+                <div class="pl-4 pr-4">
+                    <h6>Social Links</h6>
+                    <ul class="list-inline social-links">
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-dribbble">
+                                <i class="fa fa-dribbble"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-whatsapp">
+                                <i class="fa fa-whatsapp"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-google">
+                                <i class="fa fa-google"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-behance">
+                                <i class="fa fa-behance"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-sm btn-floating btn-instagram">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="pl-4 pr-4">
+                    <div class="form-group">
+                        <div class="form-item custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch11">
+                            <label class="custom-control-label" for="customSwitch11">Block</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-item custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" checked="" id="customSwitch12">
+                            <label class="custom-control-label" for="customSwitch12">Mute</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-item custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch13">
+                            <label class="custom-control-label" for="customSwitch13">Get notification</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
