@@ -1,4 +1,11 @@
-﻿<div id="chats" class="sidebar active">
+﻿@using Web.Models;
+@using Common.Constants;
+@{
+    var conversationList = (IEnumerable<ConversationModel>)ViewData["conversationList"];
+    var isOpen = true;
+}
+
+<div id="chats" class="sidebar active">
     <header>
         <span>Chats</span>
         <ul class="list-inline">
@@ -23,43 +30,57 @@
         <input type="text" class="form-control" placeholder="Search chat">
     </form>
     <div class="sidebar-body" tabindex="3" style="overflow: hidden; outline: none;">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <figure class="avatar avatar-state-success">
-                    <img src="~/Content/images/man_avatar1.jpg" class="rounded-circle">
-                </figure>
-                <div class="users-list-body">
-                    <h5>Patsy Paulton</h5>
-                    <p>Traditional heading elscas sdscsd sdcsdsc</p>
-                    <div class="users-list-action">
-                        <div class="new-message-count">2</div>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item open-chat">
-                <div>
-                    <figure class="avatar avatar-state-secondary">
-                        <img src="~/Content/images/man_avatar3.jpg" class="rounded-circle">
-                    </figure>
-                </div>
-                <div class="users-list-body">
-                    <h5>Karl Hubane</h5>
-                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                    <div class="users-list-action action-toggle">
-                        <div class="dropdown">
-                            <a data-toggle="dropdown" href="#">
-                                <i class="ti-more"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Open</a>
-                                <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Add to archive</a>
-                                <a href="#" class="dropdown-item">Delete</a>
+        @if (conversationList.Count() == 0)
+        {
+            <p class="no-friend">You have no conversations!</p>
+        }
+        else
+        {
+            <ul class="list-group list-group-flush">
+                @foreach (var conversation in conversationList)
+                {
+                    <li class="list-group-item @(isOpen?"open-chat":"")">
+                        <figure class="avatar avatar-state-secondary">
+                            <img src="@(string.IsNullOrEmpty(conversation.Friend.Avatar)?Constant.CONST_AVATAR_PATH:conversation.Friend.Avatar) " class="rounded-circle">
+                        </figure>
+                        <div class="users-list-body">
+                            <h5>@conversation.Friend.GetFullName()</h5>
+                            <p>
+                                @if (conversation.LastMessage != null)
+                                {
+                                    if(conversation.LastMessage.AccountSend_id.Equals(conversation.Friend._id.ToString()) == false)
+                                    {
+                                        <span>You: </span>
+                                    }
+                                    @conversation.LastMessage.Content
+                                }
+                            </p>
+                            <div class="users-list-action @(isOpen?"action-toggle":"")">
+                                @if (isOpen)
+                                {
+                                    <div class="dropdown">
+                                        <a data-toggle="dropdown" href="#">
+                                            <i class="ti-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="#" class="dropdown-item">Delete</a>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        openChat('@conversation.Friend._id.ToString()');
+                                        setHeaderChat('@conversation.Friend.GetFullName()');
+                                    </script>
+                                }
+                                else
+                                {
+                                    <div class="new-message-count">2</div>
+                                }
                             </div>
                         </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                    </li>
+                    isOpen = false;
+                }
+            </ul>
+        }
     </div>
 </div>

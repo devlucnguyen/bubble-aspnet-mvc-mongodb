@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="Hubs\BubbleHub.cs" />
     <Compile Include="Models\ConnectedUser.cs" />
+    <Compile Include="Models\ConversationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="WebUtilities\SessionUtility.cs" />
@@ -168,18 +169,11 @@
     <Content Include="Content\css\basecss\select2.min.css" />
     <Content Include="Content\css\basecss\util.css" />
     <Content Include="Content\css\pages\login.css" />
+    <Content Include="Content\images\avatar.png" />
     <Content Include="Content\images\call-bg.png" />
     <Content Include="Content\images\favicon.png" />
     <Content Include="Content\images\graphic3.svg" />
     <Content Include="Content\images\logo-light.svg" />
-    <Content Include="Content\images\man_avatar1.jpg" />
-    <Content Include="Content\images\man_avatar2.jpg" />
-    <Content Include="Content\images\man_avatar3.jpg" />
-    <Content Include="Content\images\man_avatar5.jpg" />
-    <Content Include="Content\images\women_avatar1.jpg" />
-    <Content Include="Content\images\women_avatar3.jpg" />
-    <Content Include="Content\images\women_avatar4.jpg" />
-    <Content Include="Content\images\women_avatar5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\basejs\bootstrap.min.js" />
@@ -239,6 +233,7 @@
     <Content Include="Views\Home\_FriendPartial.cshtml" />
     <Content Include="Views\Home\_ConversationPartial.cshtml" />
     <Content Include="Views\Home\_ChatPartial.cshtml" />
+    <Content Include="Views\Home\_MessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

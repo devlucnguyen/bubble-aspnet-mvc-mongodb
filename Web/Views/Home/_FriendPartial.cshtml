@@ -1,4 +1,5 @@
 ﻿@using MongoDB.Entities;
+@using Common.Constants;
 @{ 
     var friendList = (IEnumerable<Account>)ViewData["friendList"];
 }
@@ -35,11 +36,11 @@
                     <li class="list-group-item" data-userid="@friend._id">
                         <div>
                             <figure class="avatar avatar-state-secondary">
-                                <img src="~/Content/images/women_avatar5.jpg" class="rounded-circle">
+                                <img src="@(string.IsNullOrEmpty(friend.Avatar)?Constant.CONST_AVATAR_PATH:friend.Avatar)" class="rounded-circle">
                             </figure>
                         </div>
                         <div class="users-list-body">
-                            <h5>@friend.FirstName @friend.LastName</h5>
+                            <h5>@friend.GetFullName()</h5>
                             <p>Lastest message</p>
                             <div class="users-list-action action-toggle">
                                 <div class="dropdown">
@@ -47,10 +48,9 @@
                                         <i class="ti-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">Open</a>
+                                        <a href="javascript:void(0);" onclick="openChat('@friend._id')" class="dropdown-item">Open Conversation</a>
                                         <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                        <a href="#" class="dropdown-item">Add to archive</a>
-                                        <a href="#" class="dropdown-item">Delete</a>
+                                        <a href="#" class="dropdown-item">Delete Friend</a>
                                     </div>
                                 </div>
                             </div>

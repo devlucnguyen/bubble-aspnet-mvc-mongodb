@@ -9,6 +9,8 @@
         #region Collection Name
         public static string CONST_ACCOUNT_COLLECTION = "Account";
         public static string CONST_FRIEND_COLLECTION = "Friend";
+        public static string CONST_CONVERSATION_COLLECTION = "Conversation";
+        public static string CONST_MESSAGE_COLLECTION = "Message";
         #endregion
 
         #region Session keys
@@ -21,6 +23,10 @@
         public static string CONST_MESSAGE_USERNAME_OR_EMAIL_INVALID = "Username or email does not exist!";
         public static string CONST_MESSAGE_LOGIN_INVALID = "Invalid username or password!";
         public static string CONST_MESSAGE_LOGIN_DISABLE = "Your account has been disabled. Please contact support team Bubble!";
+        #endregion
+
+        #region File Path
+        public static string CONST_AVATAR_PATH = "Content/images/avatar.png";
         #endregion
     }
 }

@@ -56,3 +56,28 @@ function setFriendOffline(userid) {
     if (status)
         $(status).removeClass('avatar-state-success').addClass('avatar-state-secondary');
 }
+
+function openChat(friendId) {
+    $.ajax({
+        url: 'Home/GetConversation',
+        type: 'post',
+        data: {
+            friendId: friendId
+        },
+        success: function (response) {
+            var data = JSON.parse(response);
+
+            if(data.type == 'success')
+                $('.chat-body').html(data.result);
+
+            $('.chat-header').removeClass('hide');
+            $('.chat-footer').removeClass('hide');
+        }
+    });
+}
+
+function setHeaderChat(username) {
+    setTimeout(function () {
+        $('.friend-name-chat').text(username);
+    }, 300);
+}

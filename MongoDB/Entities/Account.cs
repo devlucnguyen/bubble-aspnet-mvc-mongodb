@@ -22,5 +22,12 @@ namespace MongoDB.Entities
         public DateTime LastLogout { get; set; }
         public bool Status { get; set; }
         #endregion
+
+        #region Function
+        public string GetFullName()
+        {
+            return this.FirstName + " " + this.LastName;
+        }
+        #endregion
     }
 }

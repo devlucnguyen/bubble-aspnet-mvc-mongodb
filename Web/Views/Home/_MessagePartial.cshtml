@@ -1,0 +1,24 @@
+﻿@using Web.WebUtilities;
+@{ 
+    var loggedUser = SessionUtility.GetLoggedUser();
+}
+@model List<MongoDB.Entities.Message>
+
+@if (Model.Count() != 0)
+{
+    <div class="messages">
+        @foreach(var message in Model)
+        {
+            var isOwner = message.AccountSend_id.Equals(loggedUser._id.ToString());
+            <div class="message-item @(isOwner?"outgoing-message":"")">
+                <div class="message-content">
+                    @message.Content
+                </div>
+                <div class="message-action">
+                    @message.SendDate.ToString("dd.MM HH:mm") 
+                    <i class="ti-double-check"></i>
+                </div>
+            </div>
+        }
+    </div>
+}

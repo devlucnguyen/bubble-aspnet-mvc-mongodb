@@ -1,13 +1,13 @@
 ﻿<div class="chat">
-    <div class="chat-header">
+    <div class="chat-header hide">
         <div class="chat-header-user">
             <figure class="avatar avatar-lg">
-                <img src="~/Content/images/man_avatar3.jpg" class="rounded-circle">
+                <img src="~/Content/images/avatar.png" class="rounded-circle friend-avatar-chat">
             </figure>
             <div>
-                <h5>Karl Hubane</h5>
+                <h5 class="friend-name-chat"></h5>
                 <small class="text-muted">
-                    <i>Online</i>
+                    <i class="friend-status-chat">Offline</i>
                 </small>
             </div>
         </div>
@@ -39,94 +39,12 @@
         </div>
     </div>
     <div class="chat-body" tabindex="2" style="overflow: hidden; outline: none;">
-        <!-- .no-message -->
-        <!--
         <div class="no-message-container">
             <i class="fa fa-comments-o"></i>
             <p>Select a chat to read messages</p>
         </div>
-        -->
-        <div class="messages">
-            <div class="message-item outgoing-message">
-                <div class="message-content">
-                    Hey, Maher! I'm waiting for you to send me the files.
-                </div>
-                <div class="message-action">
-                    Am 09:34 <i class="ti-double-check"></i>
-                </div>
-            </div>
-            <div class="message-item">
-                <div class="message-content">
-                    I'm sorry :( I'll send you as soon as possible.
-                </div>
-                <div class="message-action">
-                    Pm 14:20
-                </div>
-            </div>
-            <div class="message-item outgoing-message">
-                <div class="message-content">
-                    I'm waiting. Thank you :)
-                </div>
-                <div class="message-action">
-                    Pm 14:25 <i class="ti-double-check"></i>
-                </div>
-            </div>
-            <div class="message-item">
-                <div class="message-content">
-                    I'm sending files now.
-                </div>
-                <div class="message-action">
-                    Pm 14:20
-                </div>
-            </div>
-            <div class="message-item">
-                <div class="message-content message-file">
-                    <div class="file-icon">
-                        <i class="ti-file"></i>
-                    </div>
-                    <div>
-                        <div>important_documents.pdf <i class="text-muted small">(50KB)</i></div>
-                        <ul class="list-inline">
-                            <li class="list-inline-item"><a href="#">Download</a></li>
-                            <li class="list-inline-item"><a href="#">View</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="message-action">
-                    Pm 14:25
-                </div>
-            </div>
-            <div class="message-item outgoing-message">
-                <div class="message-content">
-                    Thank you so much. After I review these files, I will give you my opinion. If there's a problem, you can send it back. Good luck with!
-                </div>
-                <div class="message-action">
-                    Pm 14:50 <i title="Message could not be sent" class="ti-info-alt text-danger"></i>
-                </div>
-            </div>
-            <div class="message-item">
-                <div class="message-content">
-                    I can't wait
-                </div>
-                <div class="message-action">
-                    Pm 15:00
-                </div>
-            </div>
-            <div class="message-item outgoing-message">
-                <div class="message-content">
-                    I know how important this file is to you. You can trust me ;)
-                </div>
-                <div class="message-action">
-                    Pm 14:50 <i class="ti-double-check"></i>
-                </div>
-            </div>
-            <div class="message-item ">
-                <div class="message-content">Lorem ipsum dolor sit amet.</div>
-                <div class="message-action">PM 14:25 </div>
-            </div>
-        </div>
     </div>
-    <div class="chat-footer">
+    <div class="chat-footer hide">
         <form action="">
             <input type="text" class="form-control" placeholder="Recipient&#39;s username" aria-label="Recipient&#39;s username" aria-describedby="button-addon2">
             <div class="form-buttons">
@@ -141,5 +59,97 @@
                 </button>
             </div>
         </form>
+    </div>
+</div>
+<div class="sidebar-group">
+    <div id="contact-information" class="sidebar">
+        <header>
+            <span>About</span>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#" class="btn btn-light sidebar-close">
+                        <i class="ti-close"></i>
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <div class="sidebar-body" style="overflow: hidden; outline: none;" tabindex="6">
+            <div class="pl-4 pr-4 text-center">
+                <figure class="avatar avatar-state-danger avatar-xl mb-4">
+                    <img src="~/Content/images/avatar.png" class="rounded-circle friend-avatar-chat">
+                </figure>
+                <h5 class="text-primary">Frans Hanscombe</h5>
+                <p class="text-muted">Last seen: Today</p>
+            </div>
+            <hr>
+            <div class="pl-4 pr-4">
+                <h6>About</h6>
+                <p class="text-muted">I love reading, traveling and discovering new things. You need to be happy in life.</p>
+            </div>
+            <hr>
+            <div class="pl-4 pr-4">
+                <h6>City</h6>
+                <p class="text-muted">Germany / Berlin</p>
+            </div>
+            <hr>
+            <div class="pl-4 pr-4">
+                <h6>Website</h6>
+                <p>
+                    <a href="#">www.franshanscombe.com</a>
+                </p>
+            </div>
+            <hr>
+            <div class="pl-4 pr-4">
+                <h6>Social Links</h6>
+                <ul class="list-inline social-links">
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-sm btn-floating btn-facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-sm btn-floating btn-twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-sm btn-floating btn-whatsapp">
+                            <i class="fa fa-whatsapp"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-sm btn-floating btn-google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-sm btn-floating btn-instagram">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+            <div class="pl-4 pr-4">
+                <div class="form-group">
+                    <div class="form-item custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch11">
+                        <label class="custom-control-label" for="customSwitch11">Block</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-item custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" checked="" id="customSwitch12">
+                        <label class="custom-control-label" for="customSwitch12">Mute</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-item custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch13">
+                        <label class="custom-control-label" for="customSwitch13">Get notification</label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
