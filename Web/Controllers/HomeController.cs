@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using Web.App_Start;
 using Web.Hubs;
 using Web.Models;
 using Web.WebUtilities;
@@ -60,6 +61,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [AjaxOnly]
         [HttpPost]
         public JsonResult GetConversation(string friendId)
         {
@@ -90,6 +92,7 @@ namespace Web.Controllers
             return result;
         }
 
+        [AjaxOnly]
         [HttpPost]
         public JsonResult SendMessage(string toUserId, string message)
         {
@@ -120,6 +123,7 @@ namespace Web.Controllers
             return result;
         }
 
+        [AjaxOnly]
         [HttpPost]
         public JsonResult UpdateUnreadMessage(string conversationId)
         {

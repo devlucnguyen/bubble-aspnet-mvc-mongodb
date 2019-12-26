@@ -5,6 +5,7 @@ using MongoDB.Interfaces;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using Web.App_Start;
 using Web.Hubs;
 using Web.WebUtilities;
 
@@ -92,6 +93,7 @@ namespace Web.Controllers
             return RedirectToAction("Login");
         }
 
+        [AjaxOnly]
         [HttpPost]
         public JsonResult GetFriendOnline()
         {
