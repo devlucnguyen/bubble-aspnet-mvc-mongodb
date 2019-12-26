@@ -28,7 +28,7 @@ namespace Web.Hubs
                 else ConnectedUsers[ConnectedUsers.IndexOf(currentUser)].ConnectionId = id;
 
                 // send to caller
-                Clients.Caller.onConnected(id, accountId);
+                Clients.Caller.onConnected();
 
                 // send to all except caller client
                 Clients.AllExcept(id).onNewUserConnected();

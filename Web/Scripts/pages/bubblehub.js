@@ -13,9 +13,7 @@ $(document).ready(function () {
 
 function registerClientMethods() {
     // Calls when user successfully logged in
-    bubbleHub.client.onConnected = function (id, userName) {
-        $('.userid').val(id);
-        $('.username').val(userName);
+    bubbleHub.client.onConnected = function () {
         getFriendOnline();
     }
 
@@ -48,23 +46,39 @@ function getFriendOnline() {
             var friends = JSON.parse(response).user;
 
             for (var i = 0; i < friends.length; ++i) {
-                var status = $('.friend-list li[data-userid="' + friends[i] + '"]').find('.avatar');
+                var statusFriend = $('.friend-list li[data-userid="' + friends[i] + '"]').find('.avatar');
+                var statusConversation = $('.conversation-list li[data-userid="' + friends[i] + '"]').find('.avatar');
+                var statusHeader = $('.friend-status-chat[data-userid="' + friends[i] + '"]');
 
-                if (status)
-                    $(status).removeClass('avatar-state-secondary').addClass('avatar-state-success');
+                if (statusFriend)
+                    $(statusFriend).removeClass('avatar-state-secondary').addClass('avatar-state-success');
+
+                if (statusConversation)
+                    $(statusConversation).removeClass('avatar-state-secondary').addClass('avatar-state-success');
+
+                if (statusHeader)
+                    $(statusHeader).text("Online").addClass('status-online');
             }
         }
     });
 }
 
 function setFriendOffline(userid) {
-    var status = $('.friend-list li[data-userid="' + userid + '"]').find('.avatar');
+    var statusFriend = $('.friend-list li[data-userid="' + userid + '"]').find('.avatar');
+    var statusConversation = $('.conversation-list li[data-userid="' + userid + '"]').find('.avatar');
+    var statusHeader = $('.friend-status-chat[data-userid="' + userid + '"]');
 
-    if (status)
-        $(status).removeClass('avatar-state-success').addClass('avatar-state-secondary');
+    if (statusFriend)
+        $(statusFriend).removeClass('avatar-state-success').addClass('avatar-state-secondary');
+
+    if (statusConversation)
+        $(statusConversation).removeClass('avatar-state-success').addClass('avatar-state-secondary');
+
+    if (statusHeader)
+        $(statusHeader).text("Offline").removeClass('status-online');
 }
 
-function openChat(friendId) {
+function openChat(friendId, fullName) {
     $.ajax({
         url: 'Home/GetConversation',
         type: 'post',
@@ -79,6 +93,15 @@ function openChat(friendId) {
 
             $('.chat-header').removeClass('hide');
             $('.chat-footer').removeClass('hide');
+            $('.friend-status-chat').attr('data-userid', friendId);
+
+            //Update unread message
+            var conversationUnread = $('.conversation-list li[data-userid="' + friendId + '"]').find('.new-message-count');
+
+            if ($(conversationUnread).length > 0)
+                updateUnreadMessage(friendId);
+
+            setHeaderChat(fullName);
             toFriendId = friendId;
         }
     });

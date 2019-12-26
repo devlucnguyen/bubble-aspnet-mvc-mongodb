@@ -8,6 +8,6 @@ namespace MongoDB.Interfaces
         List<Message> FindByConversation(string conversation_id);
         string Insert(Message message);
         List<Message> FindUnreadMessage(string conversationId);
-        void UpdateUnreadMessage(string conversationId);
+        void UpdateUnreadMessage(string conversationId, Account account);
     }
 }

@@ -11,3 +11,6 @@ select{
     margin-left: 25px;
     font-size: 13px;
 }
+.friend-status-chat.status-online {
+    color: #22a922 !important;
+}

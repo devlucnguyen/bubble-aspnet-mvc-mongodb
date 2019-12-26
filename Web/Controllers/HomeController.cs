@@ -47,12 +47,17 @@ namespace Web.Controllers
                 var currentFriend = friendList.Where(user => user._id.ToString().Equals(friendId)).FirstOrDefault();
 
                 if(conversation != null)
+                {
+                    var messageList = this.MessageCollection.FindByConversation(conversation._id.ToString());
+
                     conversationList.Add(new ConversationModel
                     {
-                        _id = conversation._id.ToString(), Friend =  currentFriend,
-                        LastMessage = this.MessageCollection.FindByConversation(conversation._id.ToString()).Last(),
+                        _id = conversation._id.ToString(),
+                        Friend = currentFriend,
+                        LastMessage = messageList.Count() > 0 ? messageList.Last() : null,
                         UnreadMessageList = this.MessageCollection.FindUnreadMessage(conversation._id.ToString())
                     });
+                }
             }
 
             ViewData["friendList"] = friendList;
@@ -127,7 +132,15 @@ namespace Web.Controllers
         [HttpPost]
         public JsonResult UpdateUnreadMessage(string conversationId)
         {
-            this.MessageCollection.UpdateUnreadMessage(conversationId);
+            var loggedUser = SessionUtility.GetLoggedUser();
+            var friend = this.FriendCollection.FindByFriend(loggedUser._id.ToString(), conversationId);
+
+            if(friend != null)
+            {
+                var conversation = this.ConversationCollection.FindByFriend(friend._id.ToString());
+
+                this.MessageCollection.UpdateUnreadMessage(conversation._id.ToString(), loggedUser);
+            }else this.MessageCollection.UpdateUnreadMessage(conversationId, loggedUser);
 
             return new JsonResult { ContentType = "text" };
         }

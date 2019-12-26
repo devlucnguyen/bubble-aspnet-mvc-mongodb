@@ -44,9 +44,9 @@ namespace MongoDB.Collections
             return result;
         }
 
-        public void UpdateUnreadMessage(string conversationId)
+        public void UpdateUnreadMessage(string conversationId, Account account)
         {
-            var messageList = FindUnreadMessage(conversationId);
+            var messageList = FindUnreadMessage(conversationId).Where(message => message.AccountSend_id != account._id.ToString()).ToList();
 
             messageList.ForEach(message => message.Status = true);
             messageList.ForEach(message => Update(message));
