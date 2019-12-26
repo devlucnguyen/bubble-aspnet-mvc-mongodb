@@ -39,6 +39,7 @@
             <ul class="list-group list-group-flush">
                 @foreach (var conversation in conversationList)
                 {
+                    var unreadMessage = conversation.UnreadMessageList.Count();
                     <li class="list-group-item @(isOpen?"open-chat":"")">
                         <figure class="avatar avatar-state-secondary">
                             <img src="@(string.IsNullOrEmpty(conversation.Friend.Avatar)?Constant.CONST_AVATAR_PATH:conversation.Friend.Avatar) " class="rounded-circle">
@@ -70,10 +71,16 @@
                                         openChat('@conversation.Friend._id.ToString()');
                                         setHeaderChat('@conversation.Friend.GetFullName()');
                                     </script>
+                                    if(unreadMessage > 0)
+                                    {
+                                        <script>
+                                            updateUnreadMessage('@conversation._id');
+                                        </script>
+                                    }
                                 }
-                                else
+                                else if(unreadMessage > 0)
                                 {
-                                    <div class="new-message-count">2</div>
+                                    <div class="new-message-count">@unreadMessage</div>
                                 }
                             </div>
                         </div>

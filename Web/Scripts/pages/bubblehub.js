@@ -122,3 +122,15 @@ function sendMessage(message) {
         }
     });
 }
+
+function updateUnreadMessage(conversationId) {
+    $.ajax({
+        url: 'Home/UpdateUnreadMessage',
+        type: 'post',
+        data: {
+            conversationId: conversationId
+        },
+        success: function () {
+        }
+    });
+}

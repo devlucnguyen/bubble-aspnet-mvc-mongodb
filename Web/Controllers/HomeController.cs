@@ -48,7 +48,9 @@ namespace Web.Controllers
                 if(conversation != null)
                     conversationList.Add(new ConversationModel
                     {
-                        Friend =  currentFriend, LastMessage = this.MessageCollection.FindByConversation(conversation._id.ToString()).Last()
+                        _id = conversation._id.ToString(), Friend =  currentFriend,
+                        LastMessage = this.MessageCollection.FindByConversation(conversation._id.ToString()).Last(),
+                        UnreadMessageList = this.MessageCollection.FindUnreadMessage(conversation._id.ToString())
                     });
             }
 
@@ -88,6 +90,7 @@ namespace Web.Controllers
             return result;
         }
 
+        [HttpPost]
         public JsonResult SendMessage(string toUserId, string message)
         {
             var result = new JsonResult { ContentType = "text" };
@@ -115,6 +118,14 @@ namespace Web.Controllers
             else result.Data = new { type = "error" };
 
             return result;
+        }
+
+        [HttpPost]
+        public JsonResult UpdateUnreadMessage(string conversationId)
+        {
+            this.MessageCollection.UpdateUnreadMessage(conversationId);
+
+            return new JsonResult { ContentType = "text" };
         }
         #endregion
 

@@ -36,6 +36,28 @@ namespace MongoDB.Collections
 
             return message._id.ToString();
         }
+
+        public List<Message> FindUnreadMessage(string conversationId)
+        {
+            var result = this.Collection.Find(message => message.Conversation_id.Equals(conversationId) && message.Status == false).ToList();
+
+            return result;
+        }
+
+        public void UpdateUnreadMessage(string conversationId)
+        {
+            var messageList = FindUnreadMessage(conversationId);
+
+            messageList.ForEach(message => message.Status = true);
+            messageList.ForEach(message => Update(message));
+        }
+
+        public void Update(Message message)
+        {
+            var filter = Builders<Message>.Filter.Eq(Constant.CONST_DB_COLUMN_ID, message._id);
+
+            Collection.ReplaceOne(filter, message);
+        }
         #endregion
     }
 }
