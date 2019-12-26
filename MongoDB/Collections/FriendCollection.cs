@@ -58,10 +58,19 @@ namespace MongoDB.Collections
 
             return result;
         }
+
         public Friend FindByFriend(string accountA_id, string accountB_id)
         {
             var result = this.Collection.Find(friend => (friend.AccountA_id.Equals(accountA_id) && friend.AccountB_id.Equals(accountB_id))
                         || (friend.AccountA_id.Equals(accountB_id) && friend.AccountB_id.Equals(accountA_id))).FirstOrDefault();
+
+            return result;
+        }
+
+        public bool IsFriend(Account account, string friendId)
+        {
+            var friendList = FindByAccount(account._id.ToString());
+            var result = friendList.Where(friend => friend._id.ToString() == friendId).FirstOrDefault() != null;
 
             return result;
         }

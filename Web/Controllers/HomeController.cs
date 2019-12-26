@@ -1,9 +1,11 @@
 ﻿using MongoDB.Entities;
 using MongoDB.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using Web.Hubs;
 using Web.Models;
 using Web.WebUtilities;
 
@@ -80,6 +82,35 @@ namespace Web.Controllers
                 else messageList = this.MessageCollection.FindByConversation(currentconversation._id.ToString());
 
                 result.Data = new { type = "success", result = RenderViewToString(this.ControllerContext, "_MessagePartial", messageList) };
+            }
+            else result.Data = new { type = "error" };
+
+            return result;
+        }
+
+        public JsonResult SendMessage(string toUserId, string message)
+        {
+            var result = new JsonResult { ContentType = "text" };
+            var loggedUser = SessionUtility.GetLoggedUser();
+            var currentFriend = this.FriendCollection.FindByFriend(loggedUser._id.ToString(), toUserId);
+
+            if (currentFriend != null)
+            {
+                var userOnline = BubbleHub.GetAllConnectedUser();
+                var toUserIsOnline = userOnline.Count(user => user.AccountId == toUserId) != 0;
+                var conversation = this.ConversationCollection.FindByFriend(currentFriend._id.ToString());
+                var newMessage = new Message
+                {
+                    Conversation_id = conversation._id.ToString(),
+                    AccountSend_id = loggedUser._id.ToString(),
+                    Content = message,
+                    FileName = null,
+                    SendDate = DateTime.Now,
+                    Status = toUserIsOnline
+                };
+
+                this.MessageCollection.Insert(newMessage);
+                result.Data = new { type = "success" };
             }
             else result.Data = new { type = "error" };
 

@@ -6,5 +6,6 @@ namespace MongoDB.Interfaces
     public interface IMessageCollection
     {
         List<Message> FindByConversation(string conversation_id);
+        string Insert(Message message);
     }
 }

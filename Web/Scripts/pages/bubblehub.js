@@ -1,6 +1,8 @@
-﻿$(document).ready(function () {
+﻿var bubbleHub = null, toFriendId = null, messageInput = null;
+
+$(document).ready(function () {
     // Declare a proxy to reference the hub.
-    var bubbleHub = $.connection.bubbleHub;
+    bubbleHub = $.connection.bubbleHub;
     registerClientMethods(bubbleHub);
 
     // Start Hub
@@ -9,7 +11,7 @@
     });
 });
 
-function registerClientMethods(bubbleHub) {
+function registerClientMethods() {
     // Calls when user successfully logged in
     bubbleHub.client.onConnected = function (id, userName) {
         $('.userid').val(id);
@@ -26,9 +28,14 @@ function registerClientMethods(bubbleHub) {
     bubbleHub.client.onUserDisconnected = function (userid) {
         setFriendOffline(userid);
     }
+
+    //Received Message
+    bubbleHub.client.sendMessage = function (userid, message, datetime) {
+        BubbleMessage.Message.add(message, '');
+    }
 }
 
-function registerEvents(bubbleHub) {
+function registerEvents() {
     if (userId)
         bubbleHub.server.connect(userId);
 }
@@ -72,6 +79,7 @@ function openChat(friendId) {
 
             $('.chat-header').removeClass('hide');
             $('.chat-footer').removeClass('hide');
+            toFriendId = friendId;
         }
     });
 }
@@ -80,4 +88,37 @@ function setHeaderChat(username) {
     setTimeout(function () {
         $('.friend-name-chat').text(username);
     }, 300);
+}
+
+//Send message event
+$(document).on('submit', '.layout .content .chat .chat-footer form', function (e) {
+    e.preventDefault();
+    messageInput = $(this).find('input[type=text]');
+
+    var message = messageInput.val();
+
+    message = $.trim(message);
+
+    if (message) sendMessage(message);
+    else messageInput.focus();
+});
+
+function sendMessage(message) {
+    $.ajax({
+        url: 'Home/SendMessage',
+        type: 'post',
+        data: {
+            toUserId: toFriendId,
+            message: message
+        },
+        success: function (response) {
+            var data = JSON.parse(response);
+
+            if (data.type == 'success') {
+                BubbleMessage.Message.add(message, 'outgoing-message');
+                messageInput.val('');
+                bubbleHub.server.sendMessage(toFriendId, message);
+            }
+        }
+    });
 }

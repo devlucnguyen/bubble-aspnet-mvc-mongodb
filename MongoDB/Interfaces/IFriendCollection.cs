@@ -10,5 +10,6 @@ namespace MongoDB.Interfaces
         List<Friend> FindFriendByAccount(string accountId);
         Friend Find(string id);
         Friend FindByFriend(string accountA_id, string accountB_id);
+        bool IsFriend(Account account, string friendId);
     }
 }

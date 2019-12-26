@@ -14,6 +14,7 @@ namespace MongoDB.Entities
         public string Content { get; set; }
         public string FileName { get; set; }
         public DateTime SendDate { get; set; }
+        public bool Status { get; set; } //true is received
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿var ChatosExamle = {
+﻿var BubbleMessage = {
     Message: {
         add: function (message, type) {
             var chat_body = $('.layout .content .chat .chat-body');
@@ -27,22 +27,6 @@
 //    // $('#disconnected').modal('show');
 //    $('#call').modal('show');
 //}, 2000);
-
-$(document).on('submit', '.layout .content .chat .chat-footer form', function (e) {
-    e.preventDefault();
-
-    var input = $(this).find('input[type=text]');
-    var message = input.val();
-
-    message = $.trim(message);
-
-    if (message) {
-        ChatosExamle.Message.add(message, 'outgoing-message');
-        input.val('');
-    } else {
-        input.focus();
-    }
-});
 
 $(document).on('click', '.layout .content .sidebar-group .sidebar .list-group-item', function () {
     if (jQuery.browser.mobile) {

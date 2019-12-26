@@ -52,5 +52,20 @@ namespace Web.Hubs
         {
             return ConnectedUsers;
         }
+
+        //Function send message if both user online
+        public void SendMessage(string toUserId, string message)
+        {
+            var fromUserId = Context.ConnectionId;
+            var toUser = ConnectedUsers.FirstOrDefault(user => user.AccountId == toUserId);
+            var fromUser = ConnectedUsers.FirstOrDefault(user => user.ConnectionId == fromUserId);
+
+            if (toUser != null && fromUser != null)
+            {
+                var currentDateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
+                Clients.Client(toUser.ConnectionId).sendMessage(fromUser.AccountId, message, currentDateTime);
+            }
+        }
     }
 }

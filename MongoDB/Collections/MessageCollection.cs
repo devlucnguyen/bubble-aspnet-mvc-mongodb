@@ -29,6 +29,13 @@ namespace MongoDB.Collections
 
             return result;
         }
+
+        public string Insert(Message message)
+        {
+            this.Collection.InsertOne(message);
+
+            return message._id.ToString();
+        }
         #endregion
     }
 }
