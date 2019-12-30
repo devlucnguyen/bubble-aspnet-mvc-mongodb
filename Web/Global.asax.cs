@@ -1,5 +1,6 @@
 ﻿using Autofac.Integration.Mvc;
 using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -19,9 +20,12 @@ namespace Web
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
-        void Session_End(object sender, EventArgs e)
+        protected void Application_BeginRequest(Object sender, EventArgs e)
         {
-            
+            if (HttpContext.Current.Request.IsSecureConnection.Equals(false) && HttpContext.Current.Request.IsLocal.Equals(false))
+            {
+                Response.Redirect("https://" + Request.ServerVariables["HTTP_HOST"] + HttpContext.Current.Request.RawUrl);
+            }
         }
     }
 }

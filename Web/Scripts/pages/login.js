@@ -17,6 +17,11 @@ $(window).on("load", function () {
 });
 $(document).ready(function () {
     $('input[name="Email"]').focus();
+
+    //Enter Key
+    $(document).on('keypress', function (e) {
+        if (e.which == 13) formsubmit();
+    });
 });
 
 function register() {

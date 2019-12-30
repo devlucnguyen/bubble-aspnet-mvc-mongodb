@@ -28,8 +28,8 @@ namespace Web.App_Start
         private bool NeedToCheckSession(ActionExecutingContext filterContext)
         {
             var currentArea = filterContext.RouteData.DataTokens["area"] ?? string.Empty;
-            string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            string actionName = filterContext.ActionDescriptor.ActionName;
+            var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+            var actionName = filterContext.ActionDescriptor.ActionName;
 
             if ((controllerName.Equals("Account") && actionName.Equals("Login")) || (controllerName.Equals("Account") && actionName.Equals("Register")))
                 return false;

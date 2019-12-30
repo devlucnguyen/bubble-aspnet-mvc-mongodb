@@ -42,7 +42,7 @@
                     var unreadMessage = conversation.UnreadMessageList.Count();
                     if (conversation.LastMessage != null)
                     {
-                        <li class="list-group-item @(isOpen?"open-chat":"")" data-userid="@conversation.Friend._id.ToString()">
+                        <li class="list-group-item conversation-item @(isOpen?"open-chat":"")" data-userid="@conversation.Friend._id.ToString()" onclick="openChat('@conversation.Friend._id.ToString()', '@conversation.Friend.GetFullName()')">
                             <figure class="avatar avatar-state-secondary">
                                 <img src="@(string.IsNullOrEmpty(conversation.Friend.Avatar)?Constant.CONST_AVATAR_PATH:conversation.Friend.Avatar) " class="rounded-circle">
                             </figure>

@@ -14,3 +14,15 @@ select{
 .friend-status-chat.status-online {
     color: #22a922 !important;
 }
+.conversation-item:hover {
+    background-color: rgb(90, 91, 99);
+    transition: 0.3s;
+}
+.conversation-item:hover .users-list-action {
+    background-color: rgb(90, 91, 99) !important;
+    transition: 0.3s;
+}
+body.dark .layout .content .sidebar-group .sidebar .list-group-item .users-list-body .users-list-action {
+    box-shadow: unset !important;
+    background-color: #464852;
+}

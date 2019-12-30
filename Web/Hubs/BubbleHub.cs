@@ -67,5 +67,25 @@ namespace Web.Hubs
                 Clients.Client(toUser.ConnectionId).sendMessage(fromUser.AccountId, message, currentDateTime);
             }
         }
+
+        public void OnTyping(string toUserId)
+        {
+            var fromUserId = Context.ConnectionId;
+            var toUser = ConnectedUsers.FirstOrDefault(user => user.AccountId == toUserId);
+            var fromUser = ConnectedUsers.FirstOrDefault(user => user.ConnectionId == fromUserId);
+
+            if (toUser != null && fromUser != null)
+                Clients.Client(toUser.ConnectionId).onTyping(fromUser.AccountId);
+        }
+
+        public void OnStopTyping(string toUserId)
+        {
+            var fromUserId = Context.ConnectionId;
+            var toUser = ConnectedUsers.FirstOrDefault(user => user.AccountId == toUserId);
+            var fromUser = ConnectedUsers.FirstOrDefault(user => user.ConnectionId == fromUserId);
+
+            if (toUser != null && fromUser != null)
+                Clients.Client(toUser.ConnectionId).onStopTyping(fromUser.AccountId);
+        }
     }
 }
