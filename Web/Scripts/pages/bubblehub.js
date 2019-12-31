@@ -14,6 +14,8 @@ $(document).ready(function () {
     $('.input-message').keypress(delayTyping(function (toUserId) {
         bubbleHub.server.onStopTyping(toUserId);
     }));
+
+    searchUser();
 });
 
 function delayTyping(callback) {
@@ -191,4 +193,38 @@ function updateUnreadMessage(conversationId) {
         success: function () {
         }
     });
+}
+
+function searchUser() {
+    $('.search-user-email').keyup(function () {
+        var keyword = $('.search-user-email').val().trim();
+
+        if (keyword == '')
+            $('.search-user').addClass('hide');
+        else
+            $.ajax({
+                url: 'Account/SearchUser',
+                type: 'post',
+                data: {
+                    email: keyword
+                },
+                success: function (response) {
+                    var data = JSON.parse(response);
+                    $('.search-user-list').empty();
+
+                    if (data.type == 'success') {
+                        if (data.user.length > 0) {
+                            $('.search-user').removeClass('hide');
+
+                            for (var i = 0; i < data.user.length; ++i)
+                                SearchUser.User.add(data.user[i].Id, data.user[i].FullName, data.user[i].Photo, data.user[i].IsFriend);
+                        }
+                    } else $('.search-user').addClass('hide');
+                }
+            });
+    });
+}
+
+function searchMore() {
+
 }

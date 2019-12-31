@@ -19,6 +19,22 @@
     }
 };
 
+var SearchUser = {
+    User: {
+        add: function (userId, fullName, photo, isFriend) {
+            photo = photo ? photo : 'Content/images/avatar.png';
+            isFriend = isFriend ? 'Friend' : 'Add';
+
+            var user = '<li class="list-group-item search-item" data-userid="' + userId + '"><figure class="avatar avatar-search">'
+                + '<img src="' + photo + '" class="rounded-circle"></figure>'
+                + '<div class="search-user-info"><p class="full-name">' + fullName + '</p><p class="bio">Lastest message</p></div>'
+                + '<div class="user-add-btn"><button type="button" class="btn btn-primary" onclick="addFriend(\'' + userId + '\')">' + isFriend + '</button></div></li>';
+
+            $('.search-user-list').append(user);
+        }
+    }
+};
+
 //setTimeout(function () {
 //    ChatosExamle.Message.add();
 //}, 1000);

@@ -3,6 +3,7 @@ using Common.Utilities;
 using MongoDB.Entities;
 using MongoDB.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Web.App_Start;
@@ -106,6 +107,30 @@ namespace Web.Controllers
                              select friend._id.ToString();
 
             return new JsonResult { ContentType = "text", Data = new { user = onlineUser } };
+        }
+
+        [AjaxOnly]
+        [HttpPost]
+        public JsonResult SearchUser(string email)
+        {
+            var result = new JsonResult { ContentType = "text" };
+            var loggedUser = SessionUtility.GetLoggedUser();
+            var userList = this.AccountCollection.Search(email);
+            var friendList = this.FriendCollection.FindByAccount(loggedUser._id.ToString());
+
+            if(userList .Count > 0)
+            {
+                var data = userList.Where(user => user._id != loggedUser._id).Select(user => new {
+                    Id = user._id.ToString(),
+                    FullName = user.GetFullName(),
+                    Photo = user.Avatar,
+                    IsFriend = friendList.Where(account => account._id == user._id).Count() > 0
+                }).OrderByDescending(user => user.IsFriend);
+
+                result.Data = new { type = Constant.CONST_DATA_AJAX_SUCCESS, user = data };
+            }else result.Data = new { type = Constant.CONST_DATA_AJAX_ERROR };
+
+            return result;
         }
         #endregion
     }

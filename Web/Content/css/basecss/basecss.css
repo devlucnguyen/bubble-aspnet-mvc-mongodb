@@ -26,3 +26,35 @@ body.dark .layout .content .sidebar-group .sidebar .list-group-item .users-list-
     box-shadow: unset !important;
     background-color: #464852;
 }
+.search-user {
+    max-height: 260px;
+    background-color: #5a5c66;
+    border-radius: 5px;
+    overflow: auto;
+}
+.avatar-search {
+    float: left;
+    margin-right: 15px;
+}
+.full-name{
+    font-size: 14px;
+}
+.bio {
+    font-size: 13px;
+}
+.search-item:hover {
+    background-color: #6d6f7b;
+}
+.search-item:hover .user-add-btn{
+    display: block;
+}
+.search-item{
+    cursor: pointer;
+}
+.search-user-info{
+    float: left;
+}
+.user-add-btn{
+    float: right;
+    display: none;
+}

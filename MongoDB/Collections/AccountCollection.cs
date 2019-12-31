@@ -63,6 +63,13 @@ namespace MongoDB.Collections
 
             Collection.ReplaceOne(filter, account);
         }
+
+        public List<Account> Search(string email)
+        {
+            var result = Collection.Find(account => string.IsNullOrEmpty(email) == false && account.Email.Contains(email)).ToList();
+
+            return result;
+        }
         #endregion
 
         #region Private Functions

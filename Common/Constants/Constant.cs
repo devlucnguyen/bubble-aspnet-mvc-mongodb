@@ -28,5 +28,10 @@
         #region File Path
         public static string CONST_AVATAR_PATH = "Content/images/avatar.png";
         #endregion
+
+        #region Data Ajax Type
+        public static string CONST_DATA_AJAX_SUCCESS = "success";
+        public static string CONST_DATA_AJAX_ERROR = "error";
+        #endregion
     }
 }

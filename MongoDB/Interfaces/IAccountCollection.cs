@@ -10,5 +10,6 @@ namespace MongoDB.Interfaces
         Account FindByEmail(string email, bool viewModel = true);
         void Update(Account account);
         Account Find(string id, bool viewModel = true);
+        List<Account> Search(string email);
     }
 }

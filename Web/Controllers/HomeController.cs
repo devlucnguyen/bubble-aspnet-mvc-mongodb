@@ -1,4 +1,5 @@
-﻿using MongoDB.Entities;
+﻿using Common.Constants;
+using MongoDB.Entities;
 using MongoDB.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -90,9 +91,9 @@ namespace Web.Controllers
                 }
                 else messageList = this.MessageCollection.FindByConversation(currentconversation._id.ToString());
 
-                result.Data = new { type = "success", result = RenderViewToString(this.ControllerContext, "_MessagePartial", messageList) };
+                result.Data = new { type = Constant.CONST_DATA_AJAX_SUCCESS, result = RenderViewToString(this.ControllerContext, "_MessagePartial", messageList) };
             }
-            else result.Data = new { type = "error" };
+            else result.Data = new { type = Constant.CONST_DATA_AJAX_ERROR };
 
             return result;
         }
@@ -121,9 +122,9 @@ namespace Web.Controllers
                 };
 
                 this.MessageCollection.Insert(newMessage);
-                result.Data = new { type = "success" };
+                result.Data = new { type = Constant.CONST_DATA_AJAX_SUCCESS };
             }
-            else result.Data = new { type = "error" };
+            else result.Data = new { type = Constant.CONST_DATA_AJAX_ERROR };
 
             return result;
         }
